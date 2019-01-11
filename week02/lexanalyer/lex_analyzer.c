@@ -1,7 +1,6 @@
 #include<stdio.h>
 #include<string.h>
 
-
 int is_operator(char c){
 	char operators[6] = {"+-*/%="};
 
@@ -12,7 +11,6 @@ int is_operator(char c){
 		}
 	} 	
 }
-
 
 int is_special_symbol(char c){
 	char special_symbols[3] = {";()"};
@@ -28,6 +26,7 @@ int is_special_symbol(char c){
 
 void is_keyword(char word[], int count){
 		// all the keywords used in c lang.
+	//printf("it was invoked");
 	char keywords[32][8] = {
 		"auto",	"break", "case", "char",
 		"double",	"else",	"enum",	"extern",
@@ -37,19 +36,17 @@ void is_keyword(char word[], int count){
 		"struct",	"switch",	"typedef",	"union",
 		"unsigned",	"void",	"volatile",	"while"
 	};
-	int yes=0;
-
-	for(int key=0; key<32; key++){
-		for(int i=0; i<count; i++){
-			if(keywords[key][i]==word[i]){
-				if(i==count){yes=1;}
-			}
-				
-		}
-	
-	if(yes==1){printf("Keyword");}
+	if(word[0]==' ' || word[0]=='\t' || word[0]=='\n' || word[0]=='\v' || word[0]=='\f' || word[0]=='\r'){
+	}
+	else{
+	for(int k=0; k<count-1; k++){
+		printf("%c",word[k]);
+	}
+	printf(" is a keyword\n");
 	}
 }
+	
+
 
 
 
@@ -60,7 +57,7 @@ int main()
 
 
 
-	char word[10];
+	char word[10];	
 	char c;
 	int count = 0;
 
@@ -88,17 +85,23 @@ int main()
     				//if operator
 				if(is_operator(c)==1){
 					printf("%c is operator\n",c);
+					word[count]=='\0';	
 					is_keyword(word, count);
 					count=0;
 				}
 
 				//if special symbol
 				else if(is_special_symbol(c)==1){
-					printf("%c is special symbol\n",c);	
+					printf("%c is special symbol\n",c);
+					word[count]=='\0';		
 					is_keyword(word, count);
 					count=0;
 				}
 
+				else if(c==' ' || c=='\t' || c=='\n' || c=='\v' || c=='\f' || c=='\r'){
+					is_keyword(word, count);
+					count=0;
+				}
 		    
 
 

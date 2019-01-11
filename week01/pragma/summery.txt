@@ -1,0 +1,45 @@
+Program : "pragma.c"
+
+#include <stdio.h>
+
+void function1( );
+void function2( );
+
+#pragma startup function1
+#pragma exit function2
+
+int main( )
+{
+   printf ( "\n Now we are in main function" ) ;
+   return 0;
+}
+
+void function1( )
+{
+   printf("\nFunction1 is called before main function call");
+}
+
+void function2( )
+{
+   printf ( "\nFunction2 is called just before end of " \
+            "main function" ) ;
+}
+
+Output window:
+
+dnyanesh@computer:~/58/Compiler-Construction/week01/pragma$ ls 
+pragma.c
+dnyanesh@computer:~/58/Compiler-Construction/week01/pragma$ gcc -Wall -save-temps pragma.c -o pragma
+pragma.c:6: warning: ignoring #pragma startup function1 [-Wunknown-pragmas]
+ #pragma startup function1
+ 
+pragma.c:7: warning: ignoring #pragma exit function2 [-Wunknown-pragmas]
+ #pragma exit function2
+ 
+dnyanesh@computer:~/58/Compiler-Construction/week01/pragma$ ./pragma
+
+ Now we are in main functiondnyanesh@computer:~/58/Compiler-Construction/week01/pragma$ subl summery.txt
+dnyanesh@computer:~/58/Compiler-Construction/week01/pragma$ ls -sh
+total 52K
+ 20K pragma  4.0K pragma.c   20K pragma.i  4.0K pragma.o  4.0K pragma.s
+dnyanesh@computer:~/58/Compiler-Construction/week01/pragma$ 

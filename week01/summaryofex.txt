@@ -255,4 +255,97 @@ total 60K
 4.0K defs.c    4.0K mainp.c  4.0K mainp.o  4.0K new.txt
 4.0K header.h   16K mainp.i  4.0K mainp.s   20K output
 
+program: #if,#else,#endif
 
+#include<stdio.h>
+#define legs 8
+
+int main(){
+
+	#if (legs == 8)
+	printf("Definately Octopus");
+
+	#else
+	printf("Not Octopus");
+
+	#endif
+	return 0;
+}
+
+output:
+
+dnyanesh@computer:~/58/Compiler-Construction/week01/if$ ls
+if  if.c  if.i  if.o  if.s
+dnyanesh@computer:~/58/Compiler-Construction/week01/if$ gcc if.c
+dnyanesh@computer:~/58/Compiler-Construction/week01/if$ ./a.out 
+Definately Octopus
+
+program: #ifdef
+
+#include<stdio.h>
+#define LOKI "says_it"
+
+int main(){
+
+	#ifdef LOKI
+	printf("Well for one thing, I'm not Asgardian. And for another, We have a Hulk.");
+
+	#else
+	printf("PUANY GOWD!");
+	#endif
+	
+	return 0;
+}
+
+
+program: #ifndef
+
+#include<stdio.h>
+#define TONY "WHOSGAMORA"
+
+int main(){
+
+	#ifdef TONY
+	{	
+		#ifndef PETER
+			{
+				printf("PETER not defined. IT'S REWIND TIME\n");
+				#define PETER "YZGAMORA"
+			}
+		#else
+			printf("PETER is already defined");
+		#endif
+	}
+	#endif
+	printf("\nTONY: %s\nPETER: %s\n",TONY,PETER);
+
+	return 0;
+}
+
+
+program: #pragma
+
+#include <stdio.h>
+
+void function1( );
+void function2( );
+
+#pragma startup function1
+#pragma exit function2
+
+int main( )
+{
+   printf ( "\n Now we are in main function" ) ;
+   return 0;
+}
+
+void function1( )
+{
+   printf("\nFunction1 is called before main function call");
+}
+
+void function2( )
+{
+   printf ( "\nFunction2 is called just before end of " \
+            "main function" ) ;
+}
