@@ -1,0 +1,228 @@
+/*Example program for #define, #include preprocessors in C language:
+
+    #define – This macro defines constant value and can be any of the basic data types.
+    #include <file_name> – The source code of the file “file_name” is included in the main C program where “#include <file_name>” is mentioned.*/
+
+//PROGRAM:
+#include <stdio.h>
+ 
+#define height 100
+#define number 3.14
+#define letter 'A'
+#define letter_sequence "ABC"
+#define backslash_char '\?'
+ 
+void main()
+{
+   printf("value of height    : %d \n", height );
+   printf("value of number : %f \n", number );
+   printf("value of letter : %c \n", letter );
+   printf("value of letter_sequence : %s \n", letter_sequence);
+   printf("value of backslash_char  : %c \n", backslash_char);
+ 
+}
+/*
+//OUTPUT:
+
+ gcc -Wall -save-temps p1.c -o hi
+dnyanesh@computer:~/58/cc$ ./hi
+value of height    : 100 
+value of number : 3.140000 
+value of letter : A 
+value of letter_sequence : ABC 
+value of backslash_char  : ? 
+dnyanesh@computer:~/58/cc$ ls
+hi  p1.c  p1.i	p1.o  p1.s
+dnyanesh@computer:~/58/cc$ ls -sh p1.i
+20K p1.i
+
+*/
+
+/*Example program for conditional compilation directives:
+a) Example program for #ifdef, #else and #endif in C:
+
+    “#ifdef” directive checks whether particular macro is defined or not. If it is defined, “If” clause statements are included in source file.
+    Otherwise, “else” clause statements are included in source file for compilation and execution.*/
+
+//PROGRAM:
+
+#include <stdio.h>
+#define RAJU 100
+ 
+int main()
+{
+   #ifdef RAJU
+   printf("RAJU is defined. So, this line will be added in " \
+          "this C file\n");
+   #else
+   printf("RAJU is not defined\n");
+   #endif
+   return 0;
+}
+
+/*
+//OUTPUT:
+
+dnyanesh@computer:~/58/cc$ gcc -Wall -save-temps p2.c -o HELLO
+dnyanesh@computer:~/58/cc$ ./HELLO
+RAJU is defined. So, this line will be added in this C file
+dnyanesh@computer:~/58/cc$ ls
+HELLO  hi  p1.c  p1.i  p1.o  p1.s  p2.c  p2.i  p2.o  p2.s
+dnyanesh@computer:~/58/cc$ ls -sh p2.s
+4.0K p2.s
+
+*/
+
+/*b) Example program for #ifndef and #endif in C:
+
+    #ifndef exactly acts as reverse as #ifdef directive. If particular macro is not defined, “If” clause statements are included in source file.
+    Otherwise, else clause statements are included in source file for compilation and execution.*/
+
+
+//PROGRAM:
+#include <stdio.h>
+#define RAJU 100
+int main()
+{
+   #ifndef SELVA
+   {
+      printf("SELVA is not defined. So, now we are going to " \
+             "define here\n");
+      #define SELVA 300
+   }
+   #else
+   printf("SELVA is already defined in the program”);
+
+   #endif
+   return 0;
+ 
+}
+
+/*
+//OUTPUT:
+
+dnyanesh@computer:~/58/cc$ gcc -Wall -save-temps p3.c -o bye
+dnyanesh@computer:~/58/cc$ ./bye
+SELVA is not defined. So, now we are going to define here
+dnyanesh@computer:~/58/cc$ ls
+bye    hi    p1.i  p1.s  p2.i  p2.s  p3.i  p3.s
+HELLO  p1.c  p1.o  p2.c  p2.o  p3.c  p3.o
+dnyanesh@computer:~/58/cc$ ls -sh p3.s
+4.0K p3.s
+
+*/
+
+/*c) Example program for #if, #else and #endif in C:
+
+    “If” clause statement is included in source file if given condition is true.
+    Otherwise, else clause statement is included in source file for compilation and execution.*/
+
+
+//PROGRAM:
+
+#include <stdio.h>
+#define a 100
+int main()
+{
+   #if (a==100)
+   printf("This line will be added in this C file since " \
+          "a =100\n");
+   #else
+   printf("This line will be added in this C file since " \
+          "a is not equal to 100\n");
+   #endif
+   return 0;
+}
+
+/*
+//OUTPUT:
+
+dnyanesh@computer:~/58/Compiler-Construction$ gcc -Wall -save-temps p4.c -o outsdnyanesh@computer:~/58/Compiler-Construction$ ls
+LICENSE  outs  p4.c  p4.i  p4.o  p4.s  README.md  week01  week02  week03
+dnyanesh@computer:~/58/Compiler-Construction$ ./outs
+This line will be added in this C file since a =100
+dnyanesh@computer:~/58/Compiler-Construction$ ls -sh
+total 72K
+4.0K LICENSE  8.0K p4.c  4.0K p4.o  4.0K README.md  4.0K week02
+ 20K outs      16K p4.i  4.0K p4.s  4.0K week01     4.0K week03
+
+*/
+
+ /*Example program for undef in C language:
+
+This directive undefines existing macro in the program*/
+
+//PROGRAM:
+
+#include <stdio.h>
+ 
+#define height 100
+int main()
+{
+   printf("First defined value for height    : %d\n",height);
+   #undef height          // undefining variable
+   #define height 600     // redefining the same for new value
+   printf("value of height after undef & redefine:%d",height);
+   return 0;
+}
+
+/*
+//OUTPUT:
+
+dnyanesh@computer:~/58/Compiler-Construction$ gcc -Wall -save-temps p5.c -o output
+dnyanesh@computer:~/58/Compiler-Construction$ ls
+LICENSE  output  p5.c  p5.i  p5.o  p5.s  README.md  week01  week02  week03
+dnyanesh@computer:~/58/Compiler-Construction$ ls -sh
+total 72K
+4.0K LICENSE  8.0K p5.c  4.0K p5.o  4.0K README.md  4.0K week02
+ 20K output    16K p5.i  4.0K p5.s  4.0K week01     4.0K week03
+dnyanesh@computer:~/58/Compiler-Construction$ ./ouput
+bash: ./ouput: No such file or directory
+dnyanesh@computer:~/58/Compiler-Construction$ ./output
+First defined value for height    : 100
+value of height after undef & redefine:600
+
+*/
+
+/*Example program for pragma in C language:
+
+Pragma is used to call a function before and after main function in a C program.*/
+
+
+//PROGRAM:
+#include <stdio.h>
+ 
+void function1( );
+void function2( );
+ 
+#pragma startup function1
+#pragma exit function2
+ 
+int main( )
+{
+   printf ( "\n Now we are in main function" ) ;
+   return 0;
+}
+ 
+void function1( )
+{
+   printf("\nFunction1 is called before main function call");
+}
+ 
+void function2( )
+{
+   printf ( "\nFunction2 is called just before end of " "\n main function" ) ;
+}
+/*
+//OUTPUT:
+
+dnyanesh@computer:~/58/Compiler-Construction$ gcc -Wall -save-temps p6.c -o xyz
+dnyanesh@computer:~/58/Compiler-Construction$ ./xyz
+
+ Now we are in main functionubuntu
+dnyanesh@computer:~/58/Compiler-Construction$ ls
+p6.o  p6.c  p6.s  p6.i  xyz
+dnyanesh@computer:~/58/Compiler-Construction$ ls -sh p6.i
+20K p6.i
+
+*/

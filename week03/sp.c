@@ -1,4 +1,6 @@
-void main()
-{
-	int a; +**;
+void main(){
+int+ s+;
+else++;
 }
+
+
